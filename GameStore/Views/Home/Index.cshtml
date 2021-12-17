@@ -1,0 +1,28 @@
+﻿@model IEnumerable<GameModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Game Store</h1>
+</div>
+<div class="container">
+    <div class="row row-cols-3">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card" style="margin-bottom:20px;">
+                    <img src="@item.Image" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title">@item.Name</h4>
+                        <p class="card-text">@item.Description</p>
+                        <h4 class="text-info">Price: @(item.Price)₽</h4>
+                        <form method="post" asp-controller="Home" asp-action="AddToCart" asp-route-Id="@item.Id">
+                            <button class="btn btn-primary">Add to cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

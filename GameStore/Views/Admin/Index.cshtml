@@ -1,0 +1,73 @@
+﻿@model IEnumerable<GameModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Game list</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Admin" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create new game
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Game name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th width="3%">
+                    @item.Id
+                </th>
+                <th width="12%">
+                    @item.Name
+                </th>
+                <th width="45%">
+                    @item.Description
+                </th>
+                <th width="7%">
+                    @item.Price
+                </th>
+                <th width="8%">
+                    @item.Image
+                </th>
+                <th>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Admin" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Edit</a>
+                    </div>
+                </th>
+                <th>
+                    <div class="w-75 btn-info" role="group">
+                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-x-circle"></i>Delete</a>
+                    </div>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

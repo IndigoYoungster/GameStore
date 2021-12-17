@@ -1,0 +1,56 @@
+﻿@model List<CartItemModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Game
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Count
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.Count == 0)
+            {
+                continue;
+            }
+            <tr>
+                <th>
+                    @item.Game.Name
+                </th>
+                <th>
+                    @(item.Game.Price * item.Count)
+                </th>
+                <th>
+                    @item.Count
+                </th>
+                <th width="5%">
+                    <form method="post" asp-controller="Cart" asp-action="AddButton" asp-route-Id="@item.Game.Id">
+                        <button class="btn btn-primary"><i class="bi bi-plus-square"></i></button>
+                    </form>
+                </th>
+                <th width="5%">
+                    <form method="post" asp-controller="Cart" asp-action="RemoveButton" asp-route-Id="@item.Game.Id">
+                        <button class="btn btn-primary"><i class="bi bi-dash-square"></i></button>
+                    </form>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+<form method="post" asp-controller="Order" asp-action="Index">
+    <button class="btn btn-primary"><i class="bi bi-cart2"></i>Buy</button>
+</form>
