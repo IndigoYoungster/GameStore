@@ -2,16 +2,14 @@
 using GameStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Controllers
 {
     public class CartController : Controller
     {
-        public CartModel Cart;
-        public ApplicationDbContext _db;
+        private CartModel Cart;
+        private readonly ApplicationDbContext _db;
 
         public CartController(ApplicationDbContext db, CartModel cart)
         {

@@ -1,23 +1,21 @@
-﻿using GameStore.Data;
-using GameStore.Models;
+﻿using GameStore.Models;
+using GameStore.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Controllers
 {
     public class OrderController : Controller
     {
-        public OrderModel Order;
-        public CartModel Cart;
-        public ApplicationDbContext _db;
+        private OrderModel Order;
+        private CartModel Cart;
+        private EmailSender emailSender;
 
-        public OrderController(CartModel cart, ApplicationDbContext db)
+        public OrderController(CartModel cart)
         {
-            _db = db;
             Cart = cart;
+            emailSender = new EmailSender();
         }
 
         public IActionResult Index()
@@ -40,6 +38,8 @@ namespace GameStore.Controllers
                     orderSum += item.Game.Price * item.Count;
                 }
                 Order.TotalCost = orderSum;
+
+                emailSender.SendEmailAsync(Order, cartItems);
 
                 return View(Order);
             }

@@ -1,19 +1,16 @@
 ﻿using GameStore.Data;
 using GameStore.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Controllers
 {
     public class HomeController : Controller
     {
-        public ApplicationDbContext _db;
-        public CartModel Cart;
+        private readonly ApplicationDbContext _db;
+        private CartModel Cart;
 
         public HomeController(ApplicationDbContext db, CartModel cart)
         {

@@ -3,14 +3,12 @@ using GameStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameStore.Controllers
 {
     public class AdminController : Controller
     {
-        public ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
 
         public AdminController(ApplicationDbContext db)
         {
@@ -38,7 +36,6 @@ namespace GameStore.Controllers
             {
                 _db.Games.Add(obj);
                 _db.SaveChanges();
-                //TempData["success"] = "Category create successfully!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -71,7 +68,6 @@ namespace GameStore.Controllers
             {
                 _db.Games.Update(obj);
                 _db.SaveChanges();
-                //TempData["success"] = "Category update successfully!";
                 return RedirectToAction("Index");
             }
             return View();
