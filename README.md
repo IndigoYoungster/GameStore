@@ -6,5 +6,5 @@
  The site was created as a test work for the university.
  
  ## Run the programm
- In the file `appsettings.json` change `DefaultConnection` the connection string to the database to the one you need. /
+ In the file `appsettings.json` change `DefaultConnection` the connection string to the database to the one you need. \
  In the `Services/EmailSender.cs`, replace `***` with the data of your mailbox from which messages will be sent.
